@@ -7,7 +7,9 @@ function App() {
   return (
     <div>
       <header>TSAmazona</header>
-      <main></main>
+      <main>
+        <p>hello world</p>
+      </main>
       <footer>All right reserved</footer>
     </div>
   )
