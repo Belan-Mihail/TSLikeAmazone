@@ -24,3 +24,58 @@ img.large {
 img.thumbnail {
   height: 80px;
 }
+
+.checkout-steps > div {
+  border-bottom: 0.2rem solid #a0a0a0;
+  color: #a0a0a0;
+}
+.checkout-steps > div.active {
+  border-bottom: 0.2rem solid #f08000;
+  color: #f08000;
+}
+
+.dropdown-menu[data-bs-popper] {
+  left: auto;
+  right: 0;
+}
+
+/* header */
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+a.header-link,
+.header-link > a {
+  border: 1px rgb(33, 37, 41) solid;
+  border-radius: 2px;
+  color: white !important;
+  font-weight: bold;
+}
+
+a.header-link:hover,
+.header-link > a:hover {
+  color: white;
+  border: 1px white solid;
+}
+
+.header .dropdown-menu,
+.header .dropdown-item {
+  color: black !important;
+  background-color: white;
+}
+.header .dropdown-item a:hover {
+  border: 1px rgb(33, 37, 41) solid;
+}
+.sub-header {
+  background-color: #232f3e;
+}
+
+.cart-badge {
+  position: absolute;
+  color: #f08000;
+  font-weight: bold;
+  margin-left: 16px;
+  margin-top: -3px;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "tsamazone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd backend && npm --force install  && npm run build  && cd ../frontend && npm install && npm run build",
+    "start": "TG_ALLOW_MIXED=ALLOW  node backend/build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Belan-Mihail/TSLikeAmazone"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Belan-Mihail/TSLikeAmazone/issues"
+  }
+}

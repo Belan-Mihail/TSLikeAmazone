@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 import React from "react";
-import { Cart, CartItem } from "./types/Cart";
+import { Cart, CartItem, ShippingAddress } from "./types/Cart";
 import { UserInfo } from "./types/UserInfo";
 
 type AppState = {
@@ -47,12 +47,17 @@ type Action =
   | { type: "CART_ADD_ITEM"; payload: CartItem }
   | { type: "CART_REMOVE_ITEM"; payload: CartItem }
   // payload: UserInfo data with type of userInfo to update userInfo as state 
+  | { type: "CART_CLEAR" }
   | { type: 'USER_SIGNIN'; payload: UserInfo }
   | { type: 'USER_SIGNOUT' }
+  | { type: 'SAVE_SHIPPING_ADDRESS'; payload: ShippingAddress }
+  | { type: 'SAVE_PAYMENT_METHOD'; payload: string }
 
 function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
     case "SWITCH_MODE":
+      // save mode in localStorage
+      localStorage.setItem('mode', state.mode === 'dark' ? 'light' : 'dark')
       // prev state check. if prev.state === dark => light another (prev state was ligth) => dark
       return { ...state, mode: state.mode === "dark" ? "light" : "dark" };
     case "CART_ADD_ITEM":
@@ -83,6 +88,8 @@ function reducer(state: AppState, action: Action): AppState {
         localStorage.setItem('cartItems', JSON.stringify(cartItems))
         return { ...state, cart: { ...state.cart, cartItems } }
       }
+      case 'CART_CLEAR':
+      return { ...state, cart: { ...state.cart, cartItems: [] } }
       case 'USER_SIGNIN':
         // if user is signin we need to update user info
       return { ...state, userInfo: action.payload }
@@ -110,6 +117,24 @@ function reducer(state: AppState, action: Action): AppState {
           totalPrice: 0,
         },
       }
+      case 'SAVE_SHIPPING_ADDRESS':
+      return {
+        // keep previouse state in the data
+        ...state,
+
+        cart: {
+          // keep previous state.cart 
+          ...state.cart,
+          // update only shippingAddress (it will be new shipping adress from user)
+          shippingAddress: action.payload,
+        },
+      }
+      // same as SAVE_SHIPPING_ADDRESS
+      case 'SAVE_PAYMENT_METHOD':
+      return {
+        ...state,
+        cart: { ...state.cart, paymentMethod: action.payload },
+      }
     default:
       return state;
   }
@@ -132,3 +157,6 @@ function StoreProvider(props: React.PropsWithChildren<{}>) {
 }
 
 export { Store, StoreProvider };
+
+
+// 4:18:00
